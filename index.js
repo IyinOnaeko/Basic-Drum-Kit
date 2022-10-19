@@ -1,10 +1,10 @@
-var numberOfDrumButtons = document.querySelectorAll(".drum").length
-
-for (var i = 0; i < numberOfDrumButtons; i++) {
+var buttons = document.querySelectorAll(".drum")
+//add event listner to all buttons on mouse-click
+for (var i = 0; i < buttons.length; i++) {
 
     document.querySelectorAll(".drum")[i].addEventListener("click", handleClick);
 }
-
+//call back function onclick
 function handleClick() {
     var buttonInnerHTML = this.innerHTML;
     makeSound(buttonInnerHTML);
@@ -13,13 +13,13 @@ function handleClick() {
 }
 
 
-
+//event listner for click events 
 document.addEventListener("keydown", function(event) {
     makeSound(event.key);
     buttonAnimation(event.key); 
 });  
 
-
+//function for click sounds for each designated letter
 function makeSound(key) {
 
     switch (key) {
@@ -65,10 +65,11 @@ function makeSound(key) {
 }
 
 
-
-function buttonAnimation(currentKey) {
-        var activeButton = document.querySelector("." + currentKey);
+//create animation onclick
+function buttonAnimation(key) {
+        var activeButton = document.querySelector("." + key);
         activeButton.classList.add("pressed");
+        //remove pressed class after 10ms
 setTimeout(function(){
     activeButton.classList.remove("pressed");
 }, 100);
